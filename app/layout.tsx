@@ -18,16 +18,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className = {barrio.className}>
-        <div>
+        <div className='flex flex-col min-h-screen'>
           <Header />
-        </div>
         <div className='w-full flex-none md:w-64'>
           <SideNav />
         </div>        
-        <div className=''>
+        <div className='flex-grow'>
           {children}
         </div>
         <Footer />
+        </div>
       </body>
     </html>
   );
