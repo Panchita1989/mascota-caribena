@@ -16,12 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className = {barrio.className}>
-        <div className=''>
-          {children}
-        </div>
         <div className='w-full flex-none md:w-64'>
           <SideNav />
         </div>        
+        <div className=''>
+          {children}
+        </div>
       </body>
     </html>
   );
