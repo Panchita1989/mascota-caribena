@@ -9,10 +9,12 @@ export default function Home() {
     <header className="flex justify-between items-center">
         <img className="h-16 rounded-full m-5" src="logo.jpeg" alt="logo" />
         <div className="flex items-center gap-4 m-8">
-          <FontAwesomeIcon
-            icon={faRightToBracket}
-            className="active:bg-gray-800 lg:hover:cursor-pointer h-5 w-5 lg:hover:transform transition-transform duration-300 lg:hover:scale-120 "
-          />
+          <Link className='cursor-auto lg:cursor-pointer' href='/singup'>
+            <FontAwesomeIcon
+              icon={faRightToBracket}
+              className="active:bg-gray-800 lg:hover:cursor-pointer h-5 w-5 lg:hover:transform transition-transform duration-300 lg:hover:scale-120 "
+            />
+          </Link>
           <Link className='cursor-auto lg:cursor-pointer' href='https://www.instagram.com/mascota_caribe/' target='blank'>
             <FontAwesomeIcon
               icon={faInstagram}
@@ -31,7 +33,7 @@ export default function Home() {
         <div className='p-5'>
         <img className='' src="portrait.jpeg" alt="portrait" />
         </div>
-        <button className='lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>Book appointment</button>
+        <Link href='/booking'><button className='lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>Book appointment</button></Link>
       </section>
       
     </main>
