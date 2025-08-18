@@ -7,3 +7,26 @@ body {
   background-color: rgb(248, 173, 181);
 
 }
+.react-calendar {
+  background-color: transparent !important;
+  border: none !important; /* optional */
+}
+
+.react-calendar__navigation {
+  background-color: transparent !important;
+}
+
+.react-calendar__month-view__days__day {
+  background-color: transparent !important;
+}
+.react-calendar__navigation__arrow{
+  background-color: transparent !important;
+}
+
+.react-calendar__navigation__label {
+  background-color: transparent !important;
+}
+
+.react-calendar__navigation__label:hover {
+  background-color: transparent !important;
+}
