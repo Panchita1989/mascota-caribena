@@ -9,10 +9,28 @@ export default function bookingForm() {
     const[raza, setRaza] = useState('')
     const[age, setAge] = useState('')
     const[information, setInformation] = useState('')
+    const[error, setError] = useState([])
 
     async function handleSubmit(e){
         e.preventDefault()
         console.log(name, petName, raza, age, information)
+
+        const res = await fetch('/api/reservation',{
+            method: 'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                petName,
+                raza,
+                age,
+                information
+            })
+        })
+        const { msg } = await res.json()
+        setError(msg)
+        console.log(error)
     }
 
     return(
