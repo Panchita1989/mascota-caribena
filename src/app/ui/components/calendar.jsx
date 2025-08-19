@@ -48,7 +48,7 @@ export default function ChooseDate(){
         {selectedDay && selectedTime ?(
             <div className='text-center mt-8'>
             <p className=''>Tu Cita es el {selectedDay.toLocaleDateString()} a las {selectedTime}</p>
-            <Link href='/confirmation'>
+            <Link href='/bookingForm'>
             <button className='mt-8 lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>confirmar</button> 
             </Link>
             </div>
