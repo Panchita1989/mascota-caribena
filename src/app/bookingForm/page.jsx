@@ -13,7 +13,6 @@ export default function bookingForm() {
 
     async function handleSubmit(e){
         e.preventDefault()
-        console.log(name, petName, raza, age, information)
 
         const res = await fetch('/api/reservation',{
             method: 'POST',
@@ -28,6 +27,7 @@ export default function bookingForm() {
                 information
             })
         })
+        console.log(name, petName, raza, age, information)
         const { msg } = await res.json()
         setError(msg)
         console.log(error)
@@ -71,6 +71,15 @@ export default function bookingForm() {
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'></textarea>
             <button type='submit' className='lg:cursor-pointer border-3 border-teal-500 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'>reservar</button>
         </form>
+        <div >
+            <ul className={error[0] === 'Reservation succsesfull' ? 'text-teal-800' : 'text-red-900'}> {error.map((e)=>{
+                return(
+                    <li key={e}>{e}</li>
+            )
+            })} </ul>
+           
+        </div>
         </div>
     )    
 }
+'text-red-900'
