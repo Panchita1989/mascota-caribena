@@ -1,6 +1,7 @@
 'use client'
 
 import { useState} from 'react'
+import Confirmation from './confirmation'
 
 export default function BookingForm({date, time}) {
     
@@ -10,6 +11,7 @@ export default function BookingForm({date, time}) {
     const[age, setAge] = useState('')
     const[information, setInformation] = useState('')
     const[error, setError] = useState([])
+    const[succsess, setSuccsess] = useState(false)
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -29,8 +31,17 @@ export default function BookingForm({date, time}) {
         })
         console.log(name, petName, raza, age, information)
         const { msg } = await res.json()
-        setError(msg)
-        console.log(error)
+        if(res.ok){
+            setSuccsess(true)
+        }else{
+            setError(msg)
+            console.log(error)
+        }
+    }
+    if(succsess){
+        return <Confirmation 
+                    date={date}
+                    time={time} />
     }
 
     return(
