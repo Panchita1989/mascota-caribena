@@ -28,7 +28,9 @@ export default function BookingForm({date, time}) {
                 raza,
                 age,
                 email,
-                information
+                information,
+                date,
+                time
             })
         })
         console.log(name, petName, raza, age, information)

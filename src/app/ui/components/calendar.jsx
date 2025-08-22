@@ -36,6 +36,7 @@ export default function ChooseDate({onDateSelected, onTimeSelected, selectedDay,
         {selectedDay &&
         <div className='text-center'>
             <TimePicker 
+                selectedDay={selectedDay}
                 onSelectTime={onTimeSelected}
                 selectedTime={selectedTime} />
         </div>
