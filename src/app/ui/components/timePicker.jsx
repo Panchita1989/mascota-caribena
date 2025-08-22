@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 
-export default function TimePicker({onSelectTime, selectedTime, selectedDay, onDateSelected}){
+export default function TimePicker({onSelectTime, selectedTime, selectedDay}){
     const[availableHours, setAvailableHours]=useState([])    
 
    useEffect(()=>{
@@ -20,6 +20,14 @@ export default function TimePicker({onSelectTime, selectedTime, selectedDay, onD
     }
     fetchHours()
    },[selectedDay])
+
+   if(availableHours.length < 1){
+    return(
+        <div className='flex flex-col items-center justify-center mt-10 '>
+            <p className='max-w-md'>Una disculpa, para este dia no tenemos horas disponibles. Por favor elige otra fecha</p>
+        </div>
+    )
+   }
 
     return(
         availableHours.map((e, i)=>{
