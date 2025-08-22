@@ -9,6 +9,7 @@ export default function BookingForm({date, time}) {
     const[petName, setPetName] = useState('')
     const[raza, setRaza] = useState('')
     const[age, setAge] = useState('')
+    const[email, setEmail] = useState('')
     const[information, setInformation] = useState('')
     const[error, setError] = useState([])
     const[succsess, setSuccsess] = useState(false)
@@ -26,6 +27,7 @@ export default function BookingForm({date, time}) {
                 petName,
                 raza,
                 age,
+                email,
                 information
             })
         })
@@ -41,7 +43,8 @@ export default function BookingForm({date, time}) {
     if(succsess){
         return <Confirmation 
                     date={date}
-                    time={time} />
+                    time={time}
+                    email={email} />
     }
 
     return(
@@ -55,32 +58,43 @@ export default function BookingForm({date, time}) {
             className='mt-10'>
             <input
                 onChange={(e)=> setName(e.target.value)} 
+                required
                 value={name}
                 type="text" 
                 placeholder='nombre' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
             <input
                 onChange={(e) => setPetName(e.target.value)}
+                required
                 value={petName}
                 type="text" 
                 placeholder='nombre Mascota' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
             <input 
                 onChange={(e) => setRaza(e.target.value)}
+                required
                 value={raza}
                 type="text" 
                 placeholder='raza' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
             <input 
                 onChange={(e) => setAge(e.target.value)}
+                required
                 value={age}
                 type="number" 
                 placeholder='edad Mascota' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
+            <input 
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                value={email}
+                type="email" 
+                placeholder='email' 
+                className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
             <textarea 
                 onChange={(e)=> setInformation(e.target.value)}
                 value={information}
-                placeholder='informacionAdicional' 
+                placeholder='informacion Adicional' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'></textarea>
             <button type='submit' className='lg:cursor-pointer border-3 border-teal-500 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'>reservar</button>
         </form>
