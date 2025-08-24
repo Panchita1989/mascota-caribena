@@ -6,7 +6,8 @@ const links = [
   {name: 'Services', href: '/services'},
   {name: 'Shop', href: '/shop'},
   {name: 'Location', href: '/location'},
-  {name: 'Recomendations', href: '/recomendations'}
+  {name: 'Recomendations', href: '/recomendations'},
+  {name: 'Reservations', href: '/reservations'}
 ]
 
 export default function SideNav() {
