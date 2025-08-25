@@ -5,6 +5,7 @@ import SearchAndFilterBar from '../ui/components/searchAndFilterBar'
 
 export default function Reservations(){
     const[reservations, setReservations] = useState([])
+    const[futureReservations, setFutureReservations] = useState([])
 
     useEffect(()=>{
         const fetchAllReservations = async() => {
@@ -21,16 +22,30 @@ export default function Reservations(){
     console.log('Reservations fetched', reservations)
     },[])
 
+    useEffect(()=>{
+        const fetchFutureReservations = async()=>{
+            try {
+                const res = await fetch('/api/futureReservations')
+                const data = await res.json()
+                setFutureReservations(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchFutureReservations()
+        console.log(futureReservations)
+    },[])
+
     return (
         <div className='flex flex-col justify-center items-center'>
             <h1 className=''>Here you will see all the reservations</h1>
             <SearchAndFilterBar />
             <ul>
-                {reservations.map((r, i) => (
-                    <li key={i}>
+                {futureReservations.map((r, i) => (
+                    <li key={i} className='font-mono'>
                         <p><strong>Name: </strong>{r.name}</p>
                         <p><strong>Pet: </strong>{r.petName}</p>
-                        <p><strong>Date: </strong>{r.date}</p>
+                        <p><strong>Date: </strong>{new Date(r.date).toDateString()}</p>
                         <p><strong>Time: </strong>{r.time}</p>
                     </li>
                 ))}
