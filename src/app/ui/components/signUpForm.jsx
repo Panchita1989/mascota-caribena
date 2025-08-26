@@ -1,25 +1,43 @@
-import { signup } from "@/app/actions/auth";
+import { useState } from "react";
 
 export default function SignUpForm(){
+    const [formData, setFormData] = useState({
+        name: "",
+        petName: "",
+        raza: "",
+        size: "",
+        phone: "",
+        email: "",
+        password: ""
+    });
+
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
         const res = await fetch('/api/signup',{
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({name, petName, raza, size, phone, email, password})
+            body: JSON.stringify(formData)
         })
-        console.log('You have signed in')
+        const data = await res.json()
+        console.log(data, 'You have signed in')
+    }
+    const handleChange = (e) => {
+        const {name, value} = e.target
+        setFormData(prev => ({
+            ...prev,
+            [name]:value
+        }))
     }
 
     return(
         <>
         <h2 className='text-center mt-8'>Sign Up</h2>
-        <form action={signup} onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
-            <input type="text" name='name' placeholder='name' className='border-1 rounded' />
-            <input type="text" name='petName' placeholder='Pet Name' className='border-1 rounded' />
-            <input type="text" name='raza' placeholder='Raza' className='border-1 rounded' />
-            <select className='appearance-none border-1 rounded'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
+            <input type="text" name='name' onChange={handleChange} value={formData.name} placeholder='name' className='border-1 rounded' />
+            <input type="text" name='petName' onChange={handleChange} value={formData.petName} placeholder='Pet Name' className='border-1 rounded' />
+            <input type="text" name='raza' onChange={handleChange} value={formData.raza} placeholder='Raza' className='border-1 rounded' />
+            <select name='size' value={formData.size} onChange={handleChange} className='appearance-none border-1 rounded'>
                 <option value="" className='text-base text-gray-500'>Size</option>
                 <option value="Mini (-3kg" className='text-base text-gray-500'>Mini (-3kg)</option>
                 <option value="Extra CH (3.1 - 6kg)" className='text-base text-gray-500'>Extra CH (3.1 - 6kg)</option>
@@ -27,9 +45,9 @@ export default function SignUpForm(){
                 <option value="Grande (25 - 32kg)" className='text-base text-gray-500'>Grande (25 - 32kg)</option>
                 <option value="Extra Grande (32.1 - 60kg)" className='text-base text-gray-500'>Extra Grande (32.1 - 60kg)</option>
             </select>
-            <input type="tel" name='phone' placeholder='Phone' className='border-1 rounded' />
-            <input type="email" name='email' placeholder='E Mail' className='border-1 rounded' />
-            <input type="password" name='password' placeholder='password' className='border-1 rounded' />
+            <input type="tel" name='phone' onChange={handleChange} value={formData.phone} placeholder='Phone' className='border-1 rounded' />
+            <input type="email" name='email' onChange={handleChange} value={formData.email} placeholder='E Mail' className='border-1 rounded' />
+            <input type="password" name='password' onChange={handleChange} value={formData.password} placeholder='password' className='border-1 rounded' />
             <input type="password" name='password' placeholder='confirm password' className='border-1 rounded' />
             <button type='submit' className='border-1 rounded px-5 cursor-pointer'>Sign Up</button>
         </form>
