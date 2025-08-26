@@ -9,6 +9,8 @@ export default function BookingForm({date, time}) {
     const[petName, setPetName] = useState('')
     const[raza, setRaza] = useState('')
     const[age, setAge] = useState('')
+    const[service, setService] = useState('')
+    const[size, setSize] = useState('')
     const[email, setEmail] = useState('')
     const[information, setInformation] = useState('')
     const[error, setError] = useState([])
@@ -27,6 +29,8 @@ export default function BookingForm({date, time}) {
                 petName,
                 raza,
                 age,
+                service,
+                size,
                 email,
                 information,
                 date,
@@ -86,6 +90,28 @@ export default function BookingForm({date, time}) {
                 type="number" 
                 placeholder='edad Mascota' 
                 className='border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'/>
+            <select 
+                onChange={(e)=> setService(e.target.value)}
+                value={service}
+                required
+                className='appearance-none w-full border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'>
+                    <option value="" className='text-base text-gray-500'>Choose your Service</option>
+                    <option value="Pelo corto" className='text-base text-gray-500'>Pelo Corto</option>
+                    <option value="Pelo largo" className='text-base text-gray-500'>Pelo Largo</option>
+                    <option value="Corte de Pelo" className='text-base text-gray-500'>Corte de Pelo</option>
+            </select>
+            <select 
+                onChange={(e)=> setSize(e.target.value)}
+                value={size}
+                required
+                className='appearance-none w-full border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'>
+                    <option value="" className='text-base text-gray-500'>Size</option>
+                    <option value="Mini (-3kg" className='text-base text-gray-500'>Mini (-3kg)</option>
+                    <option value="Extra CH (3.1 - 6kg)" className='text-base text-gray-500'>Extra CH (3.1 - 6kg)</option>
+                    <option value="Mediano (13.1 - 25kg)" className='text-base text-gray-500'>Mediano (13.1 - 25kg)</option>
+                    <option value="Grande (25 - 32kg)" className='text-base text-gray-500'>Grande (25 - 32kg)</option>
+                    <option value="Extra Grande (32.1 - 60kg)" className='text-base text-gray-500'>Extra Grande (32.1 - 60kg)</option>
+                </select>
             <input 
                 onChange={(e) => setEmail(e.target.value)}
                 required

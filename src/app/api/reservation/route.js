@@ -6,11 +6,11 @@ import nodemailer from 'nodemailer'
 
 
 export async function POST(req) {
-    const{name, petName, raza, age, email, information, date, time} = await req.json()
+    const{name, petName, raza, age, service, size, email, information, date, time} = await req.json()
     const reservationDate = new Date(date)
     try {
         await connectMongoDB()
-        const reservation = await Reservation.create({name, petName, raza, age, email, information, date: reservationDate, time})
+        const reservation = await Reservation.create({name, petName, raza, age, service, size, email, information, date: reservationDate, time, service, size})
         console.log(reservation)
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -31,6 +31,8 @@ export async function POST(req) {
                     - Mascota: ${petName}
                     - Raza: ${raza}
                     - Edad: ${age}
+                    - Service: ${service}
+                    - Size: ${Size}
                     - Fecha y Hora: ${reservationDate.toLocaleDateString()} a las ${time}
                     Estamos emocionados de recibir a ${petName} 
                     y ofrecerle un cuidado especial y mucho amor. 💛

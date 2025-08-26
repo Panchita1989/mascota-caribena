@@ -1,53 +1,66 @@
-import { useState } from "react";
+'use client'
 
-export default function SearchAndFilterBar(){
+import { useState, useEffect } from "react";
+
+export default function SearchAndFilterBar({onSearch}){
+
+
+    function handleChange(e){
+        const {name, value} = e.target
+        onSearch(prev => ({...prev,[name]: value}))
+    }
 
     return(
     <div
         className='
-        flex flex-col sm:flex-row 
-        gap-4 
+        flex flex-row 
         justify-center 
-        items-stretch sm:items-center 
-        w-full sm:w-4/5 md:w-2/3 lg:w-1/2 
-        mb-8 
-        bg-cream 
-        px-4 sm:px-6 md:px-10 
-        py-4 
         rounded-lg 
-        shadow-md'>
-        <select 
-            name="" 
-            id=""
-            className=''
-            onChange={(e)=>setFilters({...filters})}>
-            <option value="">Name</option>
-            <option value=""></option>
-        </select>
-        <select 
-            name="" 
-            id=""
-            className=''
-            onChange={(e)=>setFilters({...filters})}>
-            <option value="">Pet Name</option>
-            <option value=""></option>
-        </select>
-        <select 
-            name="" 
-            id=""
-            className=''
-            onChange={(e)=>setFilters({...filters})}>
-            <option value="">Raza</option>
-            <option value=""></option>
-        </select>
-        <select 
-            name="" 
-            id=""
-            className=''
-            onChange={(e)=>setFilters({...filters})}>
-            <option value="">Date</option>
-            <option value=""></option>
-        </select>
+        shadow-md
+        m-8'>
+        <input 
+            type="text"
+            name='name'
+            placeholder='Name'
+            className='w-25'
+            onChange={handleChange}
+         />
+        <input 
+            type="text"
+            name='petName'
+            placeholder='Pet Name'
+            className='w-25'
+            onChange={handleChange}
+        />
+        <input 
+            type="text"
+            name='raza'
+            placeholder='Raza'
+            className='w-25'
+            onChange={handleChange}
+        />
+        <input 
+            type="text"
+            name='service'
+            placeholder='Service'
+            className='w-25'
+            onChange={handleChange} 
+        />
+        <input 
+            type="text"
+            name='size'
+            placeholder='Size'
+            className='w-25'
+            onChange={handleChange}
+        />
+        <input 
+            type="text"
+            name='date'
+            placeholder='Date'
+            className='w-25'
+            onChange={handleChange}
+        />
+        
     </div>
     )
 }

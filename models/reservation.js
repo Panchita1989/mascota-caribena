@@ -34,13 +34,19 @@ const reservationSchema = new Schema({
         trim: true,
     },
     date:{
-        type:String,
+        type:Date,
         
     },
     time:{
         type:String,
-        
-
+    },
+    service:{
+        type:String,
+        requiered:[true, 'Service is requiered.'],
+    },
+    size:{
+        type:String,
+        requiered:[true, 'Size is requiered.'],
     }
 })
 
