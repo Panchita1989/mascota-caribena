@@ -2,15 +2,20 @@ import { signup } from "@/app/actions/auth";
 
 export default function SignUpForm(){
 
-    function handleSubmit(e) {
+    const handleSubmit = async(e) =>{
         e.preventDefault()
+        const res = await fetch('/api/signup',{
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({name, petName, raza, size, phone, email, password})
+        })
         console.log('You have signed in')
     }
 
     return(
         <>
         <h2 className='text-center mt-8'>Sign Up</h2>
-        <form action={signup}onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
+        <form action={signup} onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
             <input type="text" name='name' placeholder='name' className='border-1 rounded' />
             <input type="text" name='petName' placeholder='Pet Name' className='border-1 rounded' />
             <input type="text" name='raza' placeholder='Raza' className='border-1 rounded' />
