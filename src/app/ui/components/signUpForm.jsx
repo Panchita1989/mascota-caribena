@@ -1,4 +1,4 @@
-
+import { signup } from "@/app/actions/auth";
 
 export default function SignUpForm(){
 
@@ -10,7 +10,7 @@ export default function SignUpForm(){
     return(
         <>
         <h2 className='text-center mt-8'>Sign Up</h2>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
+        <form action={signup}onSubmit={handleSubmit} className='flex flex-col gap-5 justify-center items-center mt-5'>
             <input type="text" name='name' placeholder='name' className='border-1 rounded' />
             <input type="text" name='petName' placeholder='Pet Name' className='border-1 rounded' />
             <input type="text" name='raza' placeholder='Raza' className='border-1 rounded' />
