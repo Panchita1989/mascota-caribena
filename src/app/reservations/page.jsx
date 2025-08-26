@@ -7,6 +7,7 @@ export default function Reservations(){
     const[reservations, setReservations] = useState([])
     const[futureReservations, setFutureReservations] = useState([])
     const[filteredReservations, setFilterdReservations] = useState([])
+    const[amount, setAmount] = useState(0)
     const [searchFilters, setSearchFilters] = useState({
         name: "",
         petName: "",
@@ -39,6 +40,7 @@ export default function Reservations(){
                 const data = await res.json()
                 setFutureReservations(data)
                 setFilterdReservations(data)
+                setAmount(data.length)
             } catch (error) {
                 console.log(error)
             }
@@ -52,6 +54,7 @@ export default function Reservations(){
 
         if(isEmpty){
             setFilterdReservations(futureReservations)
+            setAmount(futureReservations.length)
         }else{
             const filtered = reservations.filter(r =>{
                 return(
@@ -64,12 +67,14 @@ export default function Reservations(){
                 )
             })
             setFilterdReservations(filtered)
+            setAmount(filtered.length)
         }
     }, [searchFilters, reservations, futureReservations])
 
     return (
         <div className='flex flex-col justify-center items-center'>
             <h1 className=''>Here you will see all the reservations</h1>
+            <p>You have {amount} services </p>
 
             <SearchAndFilterBar onSearch={setSearchFilters}/>
 
