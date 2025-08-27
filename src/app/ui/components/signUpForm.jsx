@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Profile from './profile'
+
 
 export default function SignUpForm(){
     const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ export default function SignUpForm(){
         confirmPassword: ""
     });
     const[errorList, setErrorList] = useState([])
+    const[succsess, setSuccsess] = useState(false)
 
 
     const handleSubmit = async(e) =>{
@@ -28,6 +31,9 @@ export default function SignUpForm(){
                 body: JSON.stringify(formData)
             })
             const data = await res.json()
+            if(res.ok){
+                setSuccsess(true)
+            }
 
             if(res.status >= 400){
                 setErrorList(data.msg || ['Something went wrong'])
@@ -39,6 +45,11 @@ export default function SignUpForm(){
             setErrorList([error.message])
         }
     }
+
+    if(succsess){
+        return <Profile />
+    }
+
     const handleChange = (e) => {
         const {name, value} = e.target
         setFormData(prev => ({
