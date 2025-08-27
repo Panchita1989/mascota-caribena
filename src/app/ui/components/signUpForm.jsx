@@ -8,19 +8,36 @@ export default function SignUpForm(){
         size: "",
         phone: "",
         email: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     });
+    const[errorList, setErrorList] = useState([])
 
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
-        const res = await fetch('/api/signup',{
-            method: 'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(formData)
-        })
-        const data = await res.json()
-        console.log(data, 'You have signed in')
+
+        if(formData.password !== formData.confirmPassword){
+            setErrorList(['Passwords do not match'])
+            return
+        }
+        try {
+            const res = await fetch('/api/signup',{
+                method: 'POST',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify(formData)
+            })
+            const data = await res.json()
+
+            if(res.status >= 400){
+                setErrorList(data.msg || ['Something went wrong'])
+            }else{
+                console.log(data, 'You have signed in')
+                setErrorList([])
+            }
+        } catch (error) {
+            setErrorList([error.message])
+        }
     }
     const handleChange = (e) => {
         const {name, value} = e.target
@@ -48,9 +65,18 @@ export default function SignUpForm(){
             <input type="tel" name='phone' onChange={handleChange} value={formData.phone} placeholder='Phone' className='border-1 rounded' />
             <input type="email" name='email' onChange={handleChange} value={formData.email} placeholder='E Mail' className='border-1 rounded' />
             <input type="password" name='password' onChange={handleChange} value={formData.password} placeholder='password' className='border-1 rounded' />
-            <input type="password" name='password' placeholder='confirm password' className='border-1 rounded' />
+            <input type="password" name='confirmPassword' onChange={handleChange} alue={formData.confirmPassword} placeholder='confirm password' className='border-1 rounded' />
             <button type='submit' className='border-1 rounded px-5 cursor-pointer'>Sign Up</button>
         </form>
+        {errorList.length > 0 &&(
+            <div className=' flex flex-col justify-center items-center'>
+                <ul>
+                    {errorList.map((e)=>(
+                        <li key={e}>{e}</li>
+                    ))}
+                </ul>
+            </div>
+        )}
         </>
     )
 }
