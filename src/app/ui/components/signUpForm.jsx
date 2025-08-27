@@ -1,8 +1,6 @@
 import { useState } from "react";
-import Profile from './profile'
 
-
-export default function SignUpForm(){
+export default function SignUpForm({onSuccess}){
     const [formData, setFormData] = useState({
         name: "",
         petName: "",
@@ -14,8 +12,6 @@ export default function SignUpForm(){
         confirmPassword: ""
     });
     const[errorList, setErrorList] = useState([])
-    const[succsess, setSuccsess] = useState(false)
-
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -31,23 +27,17 @@ export default function SignUpForm(){
                 body: JSON.stringify(formData)
             })
             const data = await res.json()
-            if(res.ok){
-                setSuccsess(true)
-            }
 
             if(res.status >= 400){
                 setErrorList(data.msg || ['Something went wrong'])
             }else{
                 console.log(data, 'You have signed in')
                 setErrorList([])
+                if(onSuccess)onSuccess()
             }
         } catch (error) {
             setErrorList([error.message])
         }
-    }
-
-    if(succsess){
-        return <Profile />
     }
 
     const handleChange = (e) => {

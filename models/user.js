@@ -41,6 +41,10 @@ const userSchema = new Schema({
         required:[true, 'password is requiered'],
         minLength:[8, 'password must be at least 8 characters long'],
         match:[ /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,  "Password must contain at least one letter and one number"]
+    },
+    role:{
+        type:String,
+        default:'user'
     }    
     })
 
