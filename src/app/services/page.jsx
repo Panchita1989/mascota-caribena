@@ -6,10 +6,18 @@ export default function Services() {
 
     return(
         <>
-            <h1 className='text-center mb-8'>Services </h1>
-            {servicesData.map((e,i)=> {
-              return <Card key={i} titel={e.size} content={e.prices} />                    
-            })}
+            <h1 className='text-center mb-8 text-2xl'>Services </h1>
+            {servicesData.map((e,i)=> (  
+                <div className=''>            
+                <Card key={i} titel={e.size}>
+                    <ul className=''>
+                       {Object.entries(e.prices).map(([key, value]) =>(
+                        <li key={key} className='mb-1'>{key}: ${value} MXN</li>
+                       ))}
+                    </ul>
+                </Card>
+                </div>
+            ))}
             <div className='text-center mt-5'>
             <Button />
             </div>
