@@ -106,7 +106,7 @@ export default function BookingForm({date, time}) {
                 required
                 className='appearance-none w-full border-1 border-teal-600 block min-w-0 mb-5 bg-transparent py-1.5 pr-3 pl-1 text-base text-teal-600 placeholder:text-gray-500 focus:outline-none sm:text-sm/6'>
                     <option value="" className='text-base text-gray-500'>Size</option>
-                    <option value="Mini (-3kg" className='text-base text-gray-500'>Mini (-3kg)</option>
+                    <option value="Mini (-3kg)" className='text-base text-gray-500'>Mini (-3kg)</option>
                     <option value="Extra CH (3.1 - 6kg)" className='text-base text-gray-500'>Extra CH (3.1 - 6kg)</option>
                     <option value="Mediano (13.1 - 25kg)" className='text-base text-gray-500'>Mediano (13.1 - 25kg)</option>
                     <option value="Grande (25 - 32kg)" className='text-base text-gray-500'>Grande (25 - 32kg)</option>
