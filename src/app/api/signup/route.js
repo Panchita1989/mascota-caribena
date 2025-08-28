@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
-import connectMongoDB from '../../../../lib/db/mongodb'
-import User from '../../../auth/models/user'
+import connectMongoDB from '@/lib/db/mongodb'
+import User from '@/auth/models/user'
 import mongoose from 'mongoose'
 import nodemailer from 'nodemailer'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import SearchAndFilterBar from '../ui/components/searchAndFilterBar'
+import SearchAndFilterBar from '@/app/ui/components/searchAndFilterBar'
 
 export default function Reservations(){
     const[reservations, setReservations] = useState([])

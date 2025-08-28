@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
-import connectMongoDB from '../../../../lib/db/mongodb'
-import Reservation from '../../../../models/reservation'
+import connectMongoDB from '@/lib/db/mongodb'
+import Reservation from '@/auth/models/reservation'
 
 export async function GET(){
     await connectMongoDB()
