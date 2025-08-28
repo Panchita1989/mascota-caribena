@@ -8,6 +8,7 @@ export default function Profile() {
             <Card title='Gordo'>
                 <p>this is all the info about gordo</p>
             </Card>
+            
                 
            
         </>

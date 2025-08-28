@@ -4,6 +4,7 @@ import "./globals.css";
 import SideNav from './ui/components/sidenav'
 import Header from './ui/components/header'
 import Footer from './ui/components/footer'
+import AppProviders from './ui/components/appProviders';
 
 const barrio = Barrio({
   subsets: ['latin'],
@@ -18,16 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className = {barrio.className}>
-        <div className='flex flex-col min-h-screen'>
-          <Header />
-        <div className='w-full flex-none md:w-64'>
-          <SideNav />
-        </div>        
-        <div className='flex-grow'>
-          {children}
-        </div>
-        <Footer />
-        </div>
+        <AppProviders>
+          <div className='flex flex-col min-h-screen'>
+            <Header />
+          <div className='w-full flex-none md:w-64'>
+            <SideNav />
+          </div>        
+          <div className='flex-grow'>
+            {children}
+          </div>
+          <Footer />
+          </div>
+        </AppProviders>
       </body>
     </html>
   );
