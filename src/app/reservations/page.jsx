@@ -21,7 +21,7 @@ export default function Reservations(){
     useEffect(()=>{
         const fetchAllReservations = async() => {
             try{
-            const res = await fetch(`/api/allReservations`)
+            const res = await fetch(`/api/reservations/allReservations`)
             const data = await res.json()
             setReservations(data)
             
@@ -36,7 +36,7 @@ export default function Reservations(){
     useEffect(()=>{
         const fetchFutureReservations = async()=>{
             try {
-                const res = await fetch('/api/futureReservations')
+                const res = await fetch('/api/reservations/futureReservations')
                 const data = await res.json()
                 setFutureReservations(data)
                 setFilterdReservations(data)

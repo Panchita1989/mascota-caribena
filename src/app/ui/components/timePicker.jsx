@@ -11,7 +11,7 @@ export default function TimePicker({onSelectTime, selectedTime, selectedDay}){
     
     const fetchHours = async() =>{
         try{
-            const res = await fetch(`/api/available-hours?date=${selectedDay}`)
+            const res = await fetch(`/api/reservations/available-hours?date=${selectedDay}`)
             const data = await res.json()
             setAvailableHours(data.availableHours || [])
         }catch(error){
