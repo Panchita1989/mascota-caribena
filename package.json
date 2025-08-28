@@ -23,6 +23,7 @@
     "mongobd": "0.0.1-security.0",
     "mongoose": "^8.17.2",
     "next": "15.4.6",
+    "next-auth": "^4.24.11",
     "nodemailer": "^7.0.5",
     "react": "19.1.0",
     "react-calendar": "^6.0.0",

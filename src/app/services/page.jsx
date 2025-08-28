@@ -8,8 +8,8 @@ export default function Services() {
         <>
             <h1 className='text-center mb-8 text-2xl'>Services </h1>
             {servicesData.map((e,i)=> (  
-                <div className=''>            
-                <Card key={i} titel={e.size}>
+                <div key={i} className=''>            
+                <Card title={e.size}>
                     <ul className=''>
                        {Object.entries(e.prices).map(([key, value]) =>(
                         <li key={key} className='mb-1'>{key}: ${value} MXN</li>
