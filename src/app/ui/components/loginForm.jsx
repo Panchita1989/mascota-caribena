@@ -44,7 +44,7 @@ export default function LoginForm({onSuccess}){
         <>
             <h2 className='text-center'>Login</h2>
 
-            <form onSubmit={handleSubmit} className='flex flex-row gap-5 justify-center items-center mt-5'>
+            <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-5 justify-center items-center mt-5'>
                 <input 
                     type="email" 
                     name='email' 
