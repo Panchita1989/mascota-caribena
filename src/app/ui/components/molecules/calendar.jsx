@@ -20,8 +20,7 @@ export default function ChooseDate({onDateSelected, onTimeSelected, selectedDay,
     
     //const disableMondays = ({date}) => date.getDay() === 1
 
-    useEffect(()=>{
- 
+    useEffect(()=>{ 
     const fetchDisabled = async() => {
         try{
             const res = await fetch(`/api/fullyBookedDays`)
