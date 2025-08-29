@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import SearchAndFilterBar from '@/app/ui/components/molecules/searchAndFilterBar'
+import Card from '@/app/ui/components/molecules/cards'
+import BackButton from '@/app/ui/components/atoms/backButton'
+
 
 export default function Reservations(){
     const[reservations, setReservations] = useState([])
@@ -72,12 +75,26 @@ export default function Reservations(){
     }, [searchFilters, reservations, futureReservations])
 
     return (
+        <>
+        <div className='flex items-center justify-between px-115 mb-5'>
+            <BackButton className="" href="/admin" />
+            <h1 className='text-center flex-grow'>Here you will see all the reservations</h1>
+        </div>
         <div className='flex flex-col justify-center items-center'>
-            <h1 className=''>Here you will see all the reservations</h1>
-            <p>You have {amount} services </p>
-
+            <p className='text-center'>You have {amount} services </p>
             <SearchAndFilterBar onSearch={setSearchFilters}/>
-
+        </div>
+            {filteredReservations.map((r, i) =>{
+                return(
+                    <Card title={`${r.petName} - ${new Date(r.date).toDateString()}`}>
+                        <strong>Name: </strong>{r.name}
+                        <strong>Time: </strong>{r.time}
+                        <strong>Service: </strong>{r.service}
+                        <strong>Size: </strong>{r.size}
+                    </Card>
+                )
+            })}
+            {/*
             <ul>
                 {filteredReservations.map((r, i) => (
                     <li key={i} className='font-mono mb-5'>
@@ -89,7 +106,7 @@ export default function Reservations(){
                         <p><strong>Size: </strong>{r.size}</p>
                     </li>
                 ))}
-            </ul>
-        </div>
-    )
+            </ul> */}
+     
+    </>)
 }
