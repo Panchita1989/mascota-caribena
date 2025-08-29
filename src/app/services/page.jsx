@@ -1,5 +1,5 @@
-import Card from '@/app/ui/components/cards'
-import Button from '@/app/ui/components/button'
+import Card from '@/app/ui/components/molecules/cards'
+import Button from '@/app/ui/components/atoms/button'
 import servicesData from '@/lib/servicesData';
 
 export default function Services() {

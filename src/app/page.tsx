@@ -1,5 +1,5 @@
 
-import Button from './ui/components/button'
+import Button from '@/app/ui/components/atoms/button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons"
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';

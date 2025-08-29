@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Barrio } from 'next/font/google'
 import "./globals.css";
-import SideNav from './ui/components/sidenav'
-import Header from './ui/components/header'
-import Footer from './ui/components/footer'
+import SideNav from './ui/components/molecules/sidenav'
+import Header from './ui/components/molecules/header'
+import Footer from './ui/components/molecules/footer'
 import AppProviders from './ui/components/appProviders';
 
 const barrio = Barrio({

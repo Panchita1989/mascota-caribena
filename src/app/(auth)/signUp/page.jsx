@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation";
-import SignUpForm from '@/app/ui/components/signUpForm'
+import SignUpForm from '@/app/ui/components/molecules/signUpForm'
 
 export default function SigneUp(){
     const router = useRouter()

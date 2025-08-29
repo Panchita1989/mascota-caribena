@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
-import ChooseDate from '@/app/ui/components/calendar'
-import BookingForm from '@/app/ui/components/form'
+import ChooseDate from '@/app/ui/components/molecules/calendar'
+import BookingForm from '@/app/ui/components/molecules/form'
 
 export default function Location(){
 

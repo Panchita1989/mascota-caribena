@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import LoginForm from '@/app/ui/components/loginForm'
+import LoginForm from '@/app/ui/components/molecules/loginForm'
 
 
 export default function Login(){
