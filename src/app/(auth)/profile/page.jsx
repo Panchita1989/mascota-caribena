@@ -9,6 +9,9 @@ export default function ProfilePage() {
     const {data: session} = useSession()
     const router = useRouter()
 
+    const handleLogout = async () => {
+        await signOut({callbackUrl: '/'})
+    }
     useEffect(() => {
         if(!session) return
         if(session.user.role === 'admin'){
@@ -35,7 +38,7 @@ export default function ProfilePage() {
                     <h1 className='text-center'>Welcom, {session.user.name}</h1>
                     <Profile />
                     <div className='text-center'>
-                        <button onClick={() => signOut()} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
+                        <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
                     </div>
                 </>
             )

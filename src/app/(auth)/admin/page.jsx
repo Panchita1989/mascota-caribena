@@ -1,8 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { signOut } from "next-auth/react";
 
 export default function AdminPage() {
+
+    const handleLogout = async () => {
+        await signOut({callbackUrl: '/'})
+    }
 
     return(
     <div className='text-center'>
@@ -15,7 +20,7 @@ export default function AdminPage() {
         </Link>        
         
         <div className='text-center'>
-            <button onClick={() => signOut()} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
+            <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
         </div>        
     </div>
     )
