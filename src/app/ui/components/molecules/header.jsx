@@ -3,11 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons"
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import Image from 'next/image'
 
 export default function Header(){
     return(
     <header className=" flex justify-between items-center">
-        <img className="h-16 rounded-full m-5" src="logo.jpeg" alt="logo" />
+        <Image 
+          className="h-16 rounded-full m-5" 
+          src='/logo.jpeg'
+          alt="logo"
+          width={84}
+          height={64}
+           />
         <div className="flex items-center gap-4 m-8">
           <Link className='cursor-auto lg:cursor-pointer' href='/profile'>
             <FontAwesomeIcon
