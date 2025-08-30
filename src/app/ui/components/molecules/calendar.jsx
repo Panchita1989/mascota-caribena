@@ -23,7 +23,7 @@ export default function ChooseDate({onDateSelected, onTimeSelected, selectedDay,
     useEffect(()=>{ 
     const fetchDisabled = async() => {
         try{
-            const res = await fetch(`/api/fullyBookedDays`)
+            const res = await fetch(`/api/reservations/fullyBookedDays`)
             const data = await res.json()
             setDisableDays(data.fullyBookedDays)
         }catch(error){
