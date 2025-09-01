@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import SearchAndFilterBar from '@/app/ui/components/molecules/searchAndFilterBar'
 import Card from '@/app/ui/components/molecules/cards'
 import BackButton from '@/app/ui/components/atoms/backButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Reservations(){
@@ -109,7 +111,13 @@ export default function Reservations(){
                 return(
                     <Card 
                         key={r._id}
-                        onDelete={() => handleDelete(r._id)} 
+                        actions={
+                            <FontAwesomeIcon 
+                                onClick={()=>handleDelete(r._id)} 
+                                icon={faTrash} 
+                                className='text-sm cursor-pointer pl-20'
+                            />
+                        }
                         title={`${r.petName} - ${new Date(r.date).toDateString()}`}
                         >
                         <strong>Name: </strong>{r.name}
