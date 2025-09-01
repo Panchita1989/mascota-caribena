@@ -20,7 +20,7 @@
     "clsx": "^2.1.1",
     "icons": "^1.0.0",
     "lucide-react": "^0.539.0",
-    "mongobd": "0.0.1-security.0",
+    "mongodb": "^6.19.0",
     "mongoose": "^8.17.2",
     "next": "15.4.6",
     "next-auth": "^4.24.11",

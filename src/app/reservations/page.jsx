@@ -78,6 +78,19 @@ export default function Reservations(){
         setFilterdReservations(reservations)
         setAmount(reservations.length)
     }
+    async function handleDelete(id) {
+      
+         const res = await fetch(`api/reservations/${id}`,{
+             method:'DELETE'
+         })
+        if(res.ok){
+            setReservations(prev => prev.filter(r => r._id !== id))
+            setFilterdReservations(prev => prev.filter(r => r._id !== id))
+        }else{
+            const error = await res.json()
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -92,9 +105,13 @@ export default function Reservations(){
                 className='lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>Show all reservations</button>
             <SearchAndFilterBar onSearch={setSearchFilters}/>     
         </div>
-            {filteredReservations.map((r, i) =>{
+            {filteredReservations.map((r) =>{
                 return(
-                    <Card title={`${r.petName} - ${new Date(r.date).toDateString()}`}>
+                    <Card 
+                        key={r._id}
+                        onDelete={() => handleDelete(r._id)} 
+                        title={`${r.petName} - ${new Date(r.date).toDateString()}`}
+                        >
                         <strong>Name: </strong>{r.name}
                         <strong>Time: </strong>{r.time}
                         <strong>Service: </strong>{r.service}
