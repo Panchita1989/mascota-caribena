@@ -4,15 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/auth/authContext";
 
 
-export default function LoginForm({onSuccess}){
-    const[formData, setFormData] = useState({
-        email: '',
-        password: ''
-    })
-    const[errorList, setErrorList] = useState([])
+export default function LoginForm(){
+    const { login } = useAuth()
     const router = useRouter()
+    const[formData, setFormData] = useState({ email: '',password: '' })
+    const[errorList, setErrorList] = useState([])
+
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -27,8 +27,19 @@ export default function LoginForm({onSuccess}){
             setErrorList([result.error])
         }else{
             setErrorList([])
-            if(onSuccess) onSuccess()
-            router.push('/profile')
+            
+            const userData = {
+                name: result.user?.name,
+                email: result.user?.email,
+                role: result.user?.role
+            }
+            login(userData)
+
+            if(userData.role === 'admin'){
+                router.push('/admin')
+            }else{
+                router.push('profile')
+            }
         }        
     }
 

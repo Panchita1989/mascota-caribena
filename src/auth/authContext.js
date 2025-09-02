@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useReducer, useContext } from 'react'
 import { authReducer, initialState } from './authReducer'
 
@@ -6,7 +8,7 @@ const AuthContext = createContext()
 
 //Provider component
 export function AuthProvider({children}){
-    const[state, dispatch] = useContext(authReducer, initialState)
+    const[state, dispatch] = useReducer(authReducer, initialState)
 
     //Actions
     const login = (userData) =>{
@@ -20,11 +22,18 @@ export function AuthProvider({children}){
     }
 
     return (
-        <AuthContext.Provider value={{state, login, logout, updateUser}}>
+        <AuthContext.Provider value={{state, login, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
         
     )
 }
 // custom hook for easier usage
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => {
+    const context = useContext(AuthContext)
+    if(!context){
+        throw new Error("useAuth must be used within an Authprovider");
+        
+    }
+    return context
+}

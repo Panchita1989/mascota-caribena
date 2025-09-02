@@ -5,7 +5,7 @@ export const initialState = {
     user: null
 }
 
-export default function authReducer(state, action){
+export function authReducer(state, action){
     switch (action.type) {
         case 'LOGIN':
             return{

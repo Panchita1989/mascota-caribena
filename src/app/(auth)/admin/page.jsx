@@ -1,13 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { signOut } from "next-auth/react";
+import { useAuth } from "@/auth/authContext";
 
 export default function AdminPage() {
 
-    const handleLogout = async () => {
-        await signOut({callbackUrl: '/'})
-    }
+    const{ state, logout } = useAuth()
 
     return(
     <div className='text-center'>
@@ -20,7 +18,7 @@ export default function AdminPage() {
         </Link>        
         
         <div className='text-center'>
-            <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
+            <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
         </div>        
     </div>
     )

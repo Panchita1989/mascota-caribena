@@ -1,30 +1,27 @@
 'use client'
 
 import Profile from '@/app/ui/components/molecules/profile'
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useAuth } from "@/auth/authContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ProfilePage() {
-    const {data: session} = useSession()
+    const{ state, logout } = useAuth()
     const router = useRouter()
 
-    const handleLogout = async () => {
-        await signOut({callbackUrl: '/'})
-    }
     useEffect(() => {
-        if(!session) return
-        if(session.user.role === 'admin'){
+        if(!state.isAuthenticated) return
+        if(state.user.role === 'admin'){
             router.push('/admin')
         }
-    },[session, router])
+    },[state, router])
 
 
-    if(!session){
+    if(!state.isAuthenticated){
         return(
             <div className='flex flex-col items-center'>
                 <h1>Por favor Log In para entrar a tu perfil</h1>
-                <button onClick={() => signIn()} className='border-1 rounded px-4 cursor-pointer m-5'>
+                <button onClick={() => router.push('/login')} className='border-1 rounded px-4 cursor-pointer m-5'>
                     Log In
                 </button>
             </div>
@@ -32,15 +29,18 @@ export default function ProfilePage() {
     }
 
         // logged in User is no Admin
-    if(session.user.role === 'user'){
+    if(state.user.role === 'user'){
             return(
                 <>           
-                    <h1 className='text-center'>Welcom, {session.user.name}</h1>
+                    <h1 className='text-center'>Welcom, {state.user.name}</h1>
                     <Profile />
                     <div className='text-center'>
-                        <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
+                        <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5'>
+                            Logout
+                        </button>
                     </div>
                 </>
             )
         }
+    return null
 }
