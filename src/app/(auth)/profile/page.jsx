@@ -16,10 +16,6 @@ export default function ProfilePage() {
         }
     },[state, router])
 
-    const handleLogout = () =>{
-        logout()
-        router.push('/login')
-    }
 
     if(!state.isAuthenticated){
         return(
@@ -36,7 +32,7 @@ export default function ProfilePage() {
                     <h1 className='text-center'>Welcome, {state.user.name}</h1>
                     <Profile />
                     <div className='text-center'>
-                        <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5'>
+                        <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5'>
                             Logout
                         </button>
                     </div>

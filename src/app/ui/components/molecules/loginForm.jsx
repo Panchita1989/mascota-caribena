@@ -83,7 +83,7 @@ export default function LoginForm(){
             </form>
 
             {errorList.length > 0 &&(
-                <ul className='text-red-300 mt-2'>
+                <ul className='text-red-700 mt-2 text-center'>
                     {errorList.map((err, i) => <li key={i}>{err}</li> )}
                 </ul>
             )}

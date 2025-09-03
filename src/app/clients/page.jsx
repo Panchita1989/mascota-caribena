@@ -5,10 +5,19 @@ import Card from '@/app/ui/components/molecules/cards'
 import BackButton from '@/app/ui/components/atoms/backButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import SearchAndFilterBar from '@/app/ui/components/molecules/searchAndFilterBar'
 
 
 export default function Clients(){
     const[clients, setClients] = useState([])
+    const [searchFilters, setSearchFilters] = useState({
+    name: "",
+    petName: "",
+    raza: "",
+    service: "",
+    size: "",
+    date: ""
+    })
     
     useEffect(()=>{
         const fetchAllClients = async() =>{
@@ -43,15 +52,20 @@ export default function Clients(){
 
     return(
         <>
-            <div className="flex items-center justify-between px-135 mb-5">
-              <BackButton className="" href="/admin" />
-              <h1 className="text-center flex-grow">This are the Clients</h1>
+            <div className="flex justify-center items-center mb-5">
+            <BackButton href="/admin" className='mx-5' />
+              <h1 className="">This are the Clients</h1>
             </div>
+            <div className='flex justify-center '>
+                <SearchAndFilterBar onSearch={setSearchFilters} />
+            </div>          
+            
                 {clients.map((c, i) =>{
                     return( 
                         <Card
                             key={c._id} 
-                            title={c.name }
+                            title={<span className=''>Cliente: {c.name}</span>}
+                            subtitle= {<span className='block'>Mascota: {c.petName}</span>}
                             actions={
                                 <FontAwesomeIcon 
                                     onClick={()=>handleDelete(c._id)} 

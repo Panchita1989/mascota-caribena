@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function Card({title, children, actions}){
+export default function Card({title, subtitle, children, actions}){
 
     const[open, setOpen] = useState(false)
 
@@ -18,7 +18,8 @@ export default function Card({title, children, actions}){
                     <div className="flex justify-between items-center mb-2">
                         <h2 className="text-lg">
                             {title} 
-                            {actions} </h2>
+                            {actions} 
+                            {subtitle}</h2>
                         <button 
                             onClick={handleClick} 
                             className="border rounded text-sm w-6 h-6 flex items-center justify-center md:cursor-pointer" 

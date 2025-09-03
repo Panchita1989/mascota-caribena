@@ -96,15 +96,16 @@ export default function Reservations(){
 
     return (
         <>
-        <div className='flex items-center justify-between px-115 mb-5'>
-            <BackButton className="" href="/admin" />
-            <h1 className='text-center flex-grow'>Here you will see all the reservations</h1>
-        </div>
         <div className='flex flex-col justify-center items-center'>
             <p className='text-center'>You have {amount} services </p>
-            <button 
-                onClick={handleClick}
-                className='lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>Show all reservations</button>
+            <div className='min-w-md'>
+                <BackButton href="/admin" className='mr-20' />
+                <button 
+                    onClick={handleClick}
+                    className='lg:hover:cursor-pointer p-2 rounded transform transition-transform duration-300 lg:hover:scale-105 border-1 rounded active:bg-gray-800'>
+                        Show all reservations
+                </button>
+            </div>
             <SearchAndFilterBar onSearch={setSearchFilters}/>     
         </div>
             {filteredReservations.map((r) =>{
