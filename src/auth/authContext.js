@@ -1,7 +1,8 @@
 'use client'
 
-import { createContext, useReducer, useContext } from 'react'
+import { createContext, useReducer, useContext, useEffect } from 'react'
 import { authReducer, initialState } from './authReducer'
+import { useSession } from 'next-auth/react'
 
 //Create Context
 const AuthContext = createContext()
@@ -9,6 +10,17 @@ const AuthContext = createContext()
 //Provider component
 export function AuthProvider({children}){
     const[state, dispatch] = useReducer(authReducer, initialState)
+    const{ data:session, status } = useSession()
+
+     // Synchronisiere NextAuth Session -> Reducer
+     useEffect(()=>{
+        if(status === 'loading') return
+        if(session?.user){
+            dispatch({type: 'LOGIN', payload: session.user})
+        }else{
+            dispatch({type: 'LOGOUT'})
+        }
+     },[session, status])
 
     //Actions
     const login = (userData) =>{

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/auth/authContext";
+import { getSession } from "next-auth/react";
 
 
 export default function LoginForm(){
@@ -22,25 +23,30 @@ export default function LoginForm(){
             email: formData.email,
             password: formData.password,
         })
+        console.log('signIn result', result)
 
         if(result?.error){
             setErrorList([result.error])
-        }else{
-            setErrorList([])
-            
-            const userData = {
-                name: result.user?.name,
-                email: result.user?.email,
-                role: result.user?.role
-            }
-            login(userData)
+            return
+        }
+        setErrorList([])
 
-            if(userData.role === 'admin'){
-                router.push('/admin')
-            }else{
-                router.push('profile')
-            }
-        }        
+        const session = await getSession()
+        if(!session?.user) return
+
+        const userData = {
+            name: session.user?.name,
+            email: session.user?.email,
+            role: session.user?.role
+            
+        }
+        login(userData)
+
+        if(userData.role === 'admin'){
+            router.push('/admin')
+        }else{
+            router.push('/profile')
+        }      
     }
 
     const handleChange = (e)=>{

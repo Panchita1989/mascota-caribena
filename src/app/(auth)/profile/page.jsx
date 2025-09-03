@@ -10,12 +10,16 @@ export default function ProfilePage() {
     const router = useRouter()
 
     useEffect(() => {
-        if(!state.isAuthenticated) return
+        if(!state.isAuthenticated) return 
         if(state.user.role === 'admin'){
-            router.push('/admin')
+            router.replace('/admin')
         }
     },[state, router])
 
+    const handleLogout = () =>{
+        logout()
+        router.push('/login')
+    }
 
     if(!state.isAuthenticated){
         return(
@@ -27,20 +31,16 @@ export default function ProfilePage() {
             </div>
         )
     }
-
-        // logged in User is no Admin
-    if(state.user.role === 'user'){
             return(
                 <>           
-                    <h1 className='text-center'>Welcom, {state.user.name}</h1>
+                    <h1 className='text-center'>Welcome, {state.user.name}</h1>
                     <Profile />
                     <div className='text-center'>
-                        <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5'>
+                        <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5'>
                             Logout
                         </button>
                     </div>
                 </>
             )
         }
-    return null
-}
+    

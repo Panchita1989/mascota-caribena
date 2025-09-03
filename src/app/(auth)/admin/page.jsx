@@ -2,10 +2,17 @@
 
 import Link from 'next/link'
 import { useAuth } from "@/auth/authContext";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
 
     const{ state, logout } = useAuth()
+    const router = useRouter()
+
+    const handleLogout = () => {
+        logout()
+        router.push('/login')
+    }
 
     return(
     <div className='text-center'>
@@ -18,7 +25,7 @@ export default function AdminPage() {
         </Link>        
         
         <div className='text-center'>
-            <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
+            <button onClick={handleLogout} className='border-1 rounded px-4 cursor-pointer m-5' >Logout</button>
         </div>        
     </div>
     )
