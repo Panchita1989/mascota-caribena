@@ -80,6 +80,7 @@ export default function Reservations(){
         setFilterdReservations(reservations)
         setAmount(reservations.length)
     }
+    
     async function handleDelete(id) {
       
          const res = await fetch(`api/reservations/${id}`,{
@@ -106,7 +107,16 @@ export default function Reservations(){
                         Show all reservations
                 </button>
             </div>
-            <SearchAndFilterBar onSearch={setSearchFilters}/>     
+            <SearchAndFilterBar
+                fields={[
+                    { name: 'name', placeholder: 'Name' },
+                    { name: 'petName', placeholder: 'Pet Name' },
+                    { name: 'raza', placeholder: 'Raza' },
+                    { name: 'service', placeholder: 'Service' },
+                    { name: 'size', placeholder: 'Size' },
+                    { name: 'date', placeholder: 'Date' },
+                ]} 
+                onSearch={setSearchFilters}/>     
         </div>
             {filteredReservations.map((r) =>{
                 return(

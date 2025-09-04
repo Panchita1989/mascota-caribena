@@ -74,7 +74,7 @@ export default function LoginForm(){
                     type="password" 
                     name='password' 
                     placeholder='password' 
-                    autoComplete='curren-password' 
+                    autoComplete='current-password' 
                     value={formData.password}
                     onChange={handleChange} 
                     className='border-1 rounded' 
