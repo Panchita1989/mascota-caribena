@@ -67,7 +67,7 @@ export default function SignUpForm({onSuccess}){
             <input type="email" name='email' onChange={handleChange} value={formData.email} placeholder='E Mail' className='border-1 rounded' />
             <input type="password" name='password' onChange={handleChange} value={formData.password} placeholder='password' className='border-1 rounded' />
             <input type="password" name='confirmPassword' onChange={handleChange} alue={formData.confirmPassword} placeholder='confirm password' className='border-1 rounded' />
-            <button type='submit' className='border-1 rounded px-5 cursor-pointer'>Sign Up</button>
+            <button type='submit' className='border-1 rounded px-5 cursor-pointer'>Send</button>
         </form>
         {errorList.length > 0 &&(
             <div className=' flex flex-col justify-center items-center'>
