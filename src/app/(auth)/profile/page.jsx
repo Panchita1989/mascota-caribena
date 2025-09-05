@@ -32,7 +32,10 @@ export default function ProfilePage() {
                     <h1 className='text-center'>Welcome, {state.user.name}</h1>
                     <Profile />
                     <div className='text-center'>
-                        <button onClick={logout} className='border-1 rounded px-4 cursor-pointer m-5'>
+                        <button onClick={() => console.log('added one')} className='active:bg-gray-500 border-1 rounded px-4 cursor-pointer m-5'>Agregar Mascota</button>
+                    </div>
+                    <div className='text-center'>
+                        <button onClick={logout} className='active:bg-gray-500 border-1 rounded px-4 cursor-pointer m-5'>
                             Logout
                         </button>
                     </div>
