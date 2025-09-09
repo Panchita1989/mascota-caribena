@@ -10,15 +10,6 @@ import SearchAndFilterBar from '@/app/ui/components/molecules/searchAndFilterBar
 
 export default function Clients(){
     const[clients, setClients] = useState([])
-    const [searchFilters, setSearchFilters] = useState({
-    name: "",
-    petName: "",
-    raza: "",
-    service: "",
-    size: "",
-    date: ""
-    })
-    
     useEffect(()=>{
         const fetchAllClients = async() =>{
             try {
@@ -56,9 +47,6 @@ export default function Clients(){
             <BackButton href="/admin" className='mx-5' />
               <h1 className="">This are the Clients</h1>
             </div>
-            <div className='flex justify-center '>
-                <SearchAndFilterBar onSearch={setSearchFilters} />
-            </div>          
             
                 {clients.map((c, i) =>{
                     return( 
